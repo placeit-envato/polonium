@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Polonium - OAuth Authentication Proxy for Free</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	
+	<header>
+		<h1>Po</h1>
+		<h2>OAuth Authentication Proxy</h2>
+		
+		<nav>
+			<ol>
+				<% unless current_user %>
+					<li><a href="<%= new_user_session_path %>">Sign In</a></li>
+				<% end %>
+				<li><a href="<%= new_user_registration_path %>">Get your Polonium Key (Register)</a></li>
+			</ol>
+		</nav>
+		
+	</header>
+	
+	<section id="main">
+		<%= yield %>
+	</section>
+	
+</body>
+</html>
