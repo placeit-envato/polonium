@@ -5,7 +5,13 @@ OauthProxy::Application.routes.draw do
   # first created -> highest priority.
   match '/bad_request'             => 'proxy#bad_request'
   match '/authorize'               => 'proxy#authorize'
-  match '/callback'                => 'proxy#callback'
+
+  match '/callback' => 'proxy#callback'
+  
+  scope :constraints => {:subdomain => "secure", :protocol => 'https://'} do
+    match '/callback' => 'secure_proxy#callback'
+  end
+
   match '/get_request_token'       => 'proxy#get_request_token'
   match '/not_authorized_api_call' => 'proxy#not_authorized_api_call'
   match '/not_enough_requests'     => 'proxy#not_enough_requests'

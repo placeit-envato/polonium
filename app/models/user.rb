@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   before_save :generate_key_salt
 
   def has_requests_available?
-    return true if premium
+    return true #if premium
     
     time = Time.now.beginning_of_day
     requests = UserRequest.where(:user_id => id, :date => time).first
